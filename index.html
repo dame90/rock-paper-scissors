@@ -13,7 +13,7 @@
 "use strict";   
 
 
-// create a function named getComputerChoice
+// Create a function named getComputerChoice that randomly pick return 3 options "Rock", "Paper" and "Scissors";
 
 
 function getComputerChoice() {
@@ -29,16 +29,75 @@ if (randomNumber === 0) {
 }
 
 
+}
+
+// Create function called "getHumanChoice" that user inputs either "Rock", "Paper" or "Scissors" and result is returned.
+
+function getHumanChoice() {
+
+const userChoice = prompt("Please pick between Rock, Paper or Scissors");
+
+if(userChoice === "Rock") {
+    return "rock";
+} else if (userChoice === "Paper") {
+    return "paper";
+} else if (userChoice === "Scissors") {
+    return "scissors";
+}
+
+return userChoice;
+
+}
+
+let humanScore = 0;
+let computerScore = 0;
+
+
+
+function playRound(humanChoice, computerChoice) {
+
+let humanChoiceCaseInsensitive = humanChoice.trim().toLowerCase();
+let computerChoiceCaseInsensitive = computerChoice.trim().toLowerCase();
+
+console.log("The player entered:", humanChoice);
+console.log("The computer entered:", computerChoice);
+
+
+if (humanChoiceCaseInsensitive === computerChoiceCaseInsensitive) {
+    return "You have tied";
+} else if(
+    (humanChoiceCaseInsensitive === "rock" && computerChoiceCaseInsensitive === "scissors") ||
+    (humanChoiceCaseInsensitive === "paper" && computerChoiceCaseInsensitive === "rock") ||
+    (humanChoiceCaseInsensitive === "scissors" && computerChoiceCaseInsensitive === "paper")
+) {
+    humanScore++;
+    computerScore--;
+    return "You have won";
+} else {
+    humanScore--;
+    computerScore++;
+    return "You lose";
+}
+
+const humanSelection = getHumanChoice();
+const computerSelection = getComputerChoice();
+
+playRound(humanSelection, computerSelection);
+
+const result = playRound(humanSelection, computerSelection);
+console.log(result);
+
 
 
 
 }
 
-console.log(getComputerChoice());
 
+const humanSelection = getHumanChoice();
+const computerSelection = getComputerChoice();
 
-
-
+const result = playRound(humanSelection, computerSelection);
+console.log(result);
 
 
 
