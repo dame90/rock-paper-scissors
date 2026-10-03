@@ -23,8 +23,7 @@ if (randomNumber === 0) {
     return "paper";
 } else if (randomNumber === 2) {
     return "scissors";
-}
-
+} 
 
 
 }
@@ -36,20 +35,21 @@ if (randomNumber === 0) {
 
 function getHumanChoice() {
 
-let choice = prompt("Please enter either rock, paper or scissors: ");
+let choice = prompt("Please enter either rock, paper or scissors:").toLowerCase();
 
-if (choice === "rock") {
+
+if (choice === null) {
+    return "";
+} 
+else if(choice === "rock") {
     return "rock";
-} else if(choice === "paper") {
+} else if (choice === "paper") {
     return "paper";
 } else if (choice === "scissors") {
     return "scissors";
 }
 
-
 }
-
-
 
 
 let humanScore = 0;
@@ -58,16 +58,43 @@ let computerScore = 0;
 
 function playRound(humanChoice, computerChoice) {
 
-let humanChoiceCaseInsensitive = humanChoice.toLowerCase();
-let computerChoiceCaseInsensitive = computerChoice.toLowerCase();
+let human = humanChoice?.toLowerCase();
+let computer = computerChoice;
+
+
+ if (
+    (human === "rock" && computer === "scissors") ||
+    (human === "paper" && computer === "rock") ||
+    (human === "scissors" && computer === "paper")
+) {
+    console.log("you have won");
+    humanScore++;
+} else if (
+    (human === "rock" && computer === "paper") ||
+    (human === "paper" && computer === "scissors") ||
+    (human === "scissors" && computer === "rock")
+) {
+    console.log("you lose");
+    computerScore++;
+} else if (human === computer) {
+    console.log("you have tied!");
+} else {
+    console.log("invalid choice round skipped");
+}
+
 
 
     
 }
 
+const humanSelection = getHumanChoice();
+const computerSelection = getComputerChoice();
 
 
+console.log("human:", humanSelection);
 
+
+playRound(humanSelection,computerSelection);
 
 
 
